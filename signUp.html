@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/signUp.css">
+    <link rel="stylesheet" href="css/basic.css">
+</head>
+<body>
+    <main>
+        <div class="title-div">
+            <div class="logo">바로</div>
+            <div class="subtitle">회원가입</div>
+        </div>
+
+        <div class="id-div">
+            <div class="id-title input-title">아이디</div>
+            <div class="id-check" onclick="idCheck()">중복확인</div>
+            <input type="text" class="id-input setting-input">
+            </div>
+        </div>
+
+        <div class="pw-div">
+            <div class="pw-title input-title">비밀번호</div>
+            <div class="icon-div">
+                <iconify-icon icon="fluent:eye-28-regular" class="input-icon" onclick="clickEye(0)"></iconify-icon>
+            </div>
+            <input type="password" class="pw-input pw-eye setting-input"> 
+        </div>
+
+        <div class="check-pw-div">
+            <div class="pw-title input-title">비밀번호 확인</div>
+            <div class="icon-div">
+                <iconify-icon icon="fluent:eye-28-regular" class="input-icon" onclick="clickEye(1)"></iconify-icon>
+            </div>
+            <input type="password" class="pw-check-input pw-eye setting-input"> 
+        </div>
+
+        <div class="signup" onclick="signup()">프로필 설정</div>
+
+    </main>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script src="js/signUp.js"></script>
+</body>
+</html>
