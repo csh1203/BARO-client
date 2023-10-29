@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/share.css">
 </head>
 <body>
-    <iconify-icon icon="fluent:ios-arrow-24-filled" class="back-btn"></iconify-icon>
+    <iconify-icon icon="fluent:ios-arrow-24-filled" class="back-btn" onclick="backHome()"></iconify-icon>
     <div class="title-plus-div">
         <div class="title-div">
             <div class="title">나누기</div>
@@ -34,6 +34,11 @@
             <img src="/img/comment-cnt.png" class="comment-cnt-img">
             <div class="comment-cnt-num"></div>
         </div>
+    </div>
+
+    <div class="nav">
+        <div class="nav-page choose-page" onclick="navChoose(0, 1)">모든 게시물</div>
+        <div class="nav-page no-choose-page" onclick="navChoose(1, 0)">나의 게시물</div>
     </div>
 
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
