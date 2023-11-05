@@ -11,3 +11,9 @@ function navChoose(ch, no){
         window.location.href = '/share.html'
     }
 }
+
+function editBtn(event){
+    console.log(event.target);
+    console.log(event.target.getBoundingClientRect().top);
+    
+}
