@@ -7,3 +7,7 @@ function goTocurrectPage(index){
         window.location.href = '/learn.html';
     }
 }
+
+function goSetting(){
+    window.location.href = "/myPage.html";
+}
