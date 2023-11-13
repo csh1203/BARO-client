@@ -4,7 +4,6 @@ main{
     left: 50%;
     transform: translate(-50%, -50%);
     overflow-x: hidden;
-    background-color: aqua;
 }
 .title-div{
     position: relative;
