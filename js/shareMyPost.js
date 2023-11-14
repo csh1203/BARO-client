@@ -12,8 +12,16 @@ function navChoose(ch, no){
     }
 }
 
-function editBtn(event){
-    console.log(event.target);
-    console.log(event.target.getBoundingClientRect().top);
-    
+function backHome(){
+    window.location.href = "/main.html";
+}
+
+let editArr = document.getElementsByClassName("edit-content-btn");
+for(let i in editArr){
+    editArr[i].onclick = () => editContent(i);
+}
+
+function editContent(i){
+    let button = editArr[i];
+    // let buttonRect = button.
 }
