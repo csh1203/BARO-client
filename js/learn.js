@@ -19,3 +19,7 @@ function showContent(){
 function plusPost(){
     window.location.href = "/learnNewPost.html"
 }
+
+function backHome(){
+    window.location.href = "/main.html";
+}
