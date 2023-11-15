@@ -55,14 +55,12 @@
     display: flex;
     align-items: center;
     column-gap: 5px;
+    font-size: 15px;
 }
 .edit-success{
     color: #FFB800;
     font-size: 12px;
     font-weight: 700;
-}
-.edit-content{
-    font-size: 15px;
 }
 .user-profile{
     font-size: 25px;
@@ -94,9 +92,11 @@
     justify-content: end;
 }
 .comment-cnt-num{
+    width: 10px;
     position: relative;
-    left: -7.5px;
+    left: -10px;
     top: 1px;
+    text-align: center;
     color: #FFF;
     font-size: 7px;
     font-weight: 700;

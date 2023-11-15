@@ -29,6 +29,12 @@ editArr.forEach((e, i) => {
     e.onclick = () => showEditDiv(e, i);
 });
 
+let successBtnArr = [...document.getElementsByClassName('edit-success')];
+console.log(successBtnArr);
+successBtnArr.forEach((e) => {
+    e.onclick = () => editSuccess(e);
+})
+
 function showEditDiv(e, i){
     let editDiv = document.getElementsByClassName('edit-post-div')[0];
     if(index != i){
@@ -57,4 +63,9 @@ function editMyPost(i){
 
 function deleteMyPost(i){
     console.log(i);
+}
+
+function editSuccess(e){
+    if(e.innerHTML === "완료하기") e.innerHTML = "완료함"
+    else e.innerHTML = "완료하기"
 }
