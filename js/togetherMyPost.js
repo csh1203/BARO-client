@@ -70,3 +70,11 @@ function joinClose(e){
         e.classList.remove("join-close-btn")
     }
 }
+
+function backHome(){
+    window.location.href = "/main.html"
+}
+
+function showContent(){
+    window.location.href = "/togetherShowPost.html";
+}
