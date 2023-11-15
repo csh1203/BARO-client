@@ -1,13 +1,9 @@
-const loginButton = document.getElementsByClassName('logIn')[0]
+const loginButton = document.getElementsByClassName('logIn')[0];
 
-function logIn(){
+// Google OAuth 로그인 버튼을 누르면 백엔드로 리다이렉트됩니다.
+loginButton.onclick = () => {
+    // axios.get(`${BASE_URL}/auth/google`)
 
-
-
-    const response = axios.get(`${BASE_URL}/google`);
-    console.log(response.data)
-
-
-    window.location.href = '/main.html';
 }
 
+  
