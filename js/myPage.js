@@ -1,3 +1,8 @@
+
+let nickname = document.getElementsByClassName("student-id")[0];
+let major = document.getElementsByClassName("major")[0];
+let level = document.getElementsByClassName("level-name")[0];
+
 function backHome(){
     window.location.href = "/main.html"
 }
@@ -6,14 +11,15 @@ function backHome(){
 axios.get(`${BASE_URL}/auth/userinfo`, { withCredentials: true})
     .then(response => {
         console.log('User info:', response.data);
+        nickname.innerText = response.data.name;
+        major.innerText = response.data.major;
+        // level.innerText
     })
     .catch(error => {
         console.error('There has been a problem with your axios request:', error);
     });
 
-document.getElementsByClassName("student-id")[0].innerHTML = "2314_조서현";
-document.getElementsByClassName("major")[0].innerHTML = "뉴미디어웹솔루션과";
-document.getElementsByClassName("level-name")[0].innerHTML = "Lv.1 거북이"
+
 
 function shareMyPost(){
     window.location.href = "/shareMyPost.html";
