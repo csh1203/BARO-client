@@ -7,9 +7,7 @@
     justify-content: space-between;
     align-items: center;
     width: calc(100% - 32px * 2);
-    margin-left: 32px;
-    margin-right: 32px;
-    margin-top: 40px;
+    margin: 40px 32px 32px 32px;
 }
 .title-div{
     display: block;
@@ -29,9 +27,6 @@
 .plus-btn{
     width: 40px;
     height: 40px;
-}
-#first-comment-div{
-    margin-top: 32px;
 }
 .share-content-div{
     position: relative;
@@ -84,9 +79,11 @@
     justify-content: end;
 }
 .comment-cnt-num{
+    width: 10px;
     position: relative;
-    left: -7.5px;
+    left: -10px;
     top: 1px;
+    text-align: center;
     color: #FFF;
     font-size: 7px;
     font-weight: 700;
