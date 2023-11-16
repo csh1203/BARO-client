@@ -22,13 +22,12 @@ axios.get(`${BASE_URL}/auth/userinfo`, { withCredentials: true})
         console.error('There has been a problem with your axios request:', error);
     });
 
-function logout(){
+async function logout(){
     try{
-    axios.get(`${BASE_URL}/auth/logout`)
-    .then(response => {
-        // console.log(response.data)
-    })
-    .catch(error => {
+    const reponse = await axios.post(`${BASE_URL}/auth/logout`);
+        window.location.href = "index.html";
+    console.log(reponse.data);
+    }catch(error){
         console.error('There has been a problem with your axios request:', error);
     }
 }
