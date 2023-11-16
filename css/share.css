@@ -30,8 +30,8 @@
 }
 .share-content-div{
     position: relative;
-    width: calc(330px - 16px * 2);
-    height: calc(158px - 10px * 2);
+    width: calc(100% - (30px * 2));
+    height: calc(158px - (10px * 2));
     border-radius: 10px;
     background: #FFF;
     box-shadow: 1px 10px 10px 0px rgba(0, 0, 0, 0.10);
@@ -39,10 +39,7 @@
     transform: translate(-50%);
     margin-top: 16px;
     margin-bottom: 16px;
-    padding-left: 16px;
-    padding-right: 16px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding: 10px 16px 10px 16px;
 }
 .content-title-div{
     display: flex;

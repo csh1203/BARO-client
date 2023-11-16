@@ -25,7 +25,7 @@
 }
 .share-content-div{
     position: relative;
-    width: calc(330px - 16px * 2);
+    width: calc(100% - (30px * 2));
     height: calc(158px - 10px * 2);
     border-radius: 10px;
     background: #FFF;
