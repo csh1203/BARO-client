@@ -30,7 +30,6 @@ editArr.forEach((e, i) => {
 });
 
 let successBtnArr = [...document.getElementsByClassName('edit-success')];
-console.log(successBtnArr);
 successBtnArr.forEach((e) => {
     e.onclick = () => editSuccess(e);
 })
@@ -72,4 +71,51 @@ function editSuccess(e){
 
 function showContent(){
     window.location.href = "/shareShowPost.html";
+}
+
+{/* <div class="share-content-div">
+        <div class="content-title-div">
+            <div class="content-profile">
+                <iconify-icon icon="healthicons:ui-user-profile" class="user-profile"></iconify-icon>
+                <div class="stu-id">2314_조서현</div>
+                <iconify-icon icon="simple-line-icons:check" class="content-check"></iconify-icon>
+            </div>
+            <div class="edit-content edit-content-btn">
+                <div class="edit-success">완료하기</div>
+                <iconify-icon icon="iconamoon:menu-kebab-vertical-light" class="edit-content"></iconify-icon>
+            </div>
+        </div>
+        <div class="hr"></div>
+        <div class="content-text" onclick="showContent()">
+            오늘 5교시 체육인데 체육복을 안갖고 왔어요ㅜㅠㅠㅠ 
+            2학년 학생 중 점심시간에 체육복 빌려주실 분 구해요ㅜㅜ 
+            6교시에 바로 돌려드릴게요!!!!!!!!!!!!!!
+            원하시면 빨래까지 해드릴게요ㅠㅠㅠㅠㅠㅠㅠ 
+        </div>
+        <div class="comment-cnt-div">
+            <img src="/img/comment-cnt.png" class="comment-cnt-img">
+            <div class="comment-cnt-num"></div>
+        </div>
+    </div> */}
+
+
+
+axios.get(`${BASE_URL}/auth/userinfo`, { withCredentials: true})
+    .then(response => {
+        // console.log('User info:', response.data.user_no);
+        getUserPosts(response.data.user_no);
+    })
+    .catch(error => {
+        console.error('There has been a problem with your axios request:', error);
+    });
+
+function getUserPosts(user_no){
+    console.log(user_no);
+    axios.get(`${BASE_URL}/share/post/${user_no}`)
+    .then(Response => {
+        console.log(Response);
+    })
+    .catch(error => {
+        console.error('There has been a problem with your axios request:', error);
+    });
 }

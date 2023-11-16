@@ -47,25 +47,6 @@ function getUserName(posts){
 }
 
 function showPosts(post, userName){
-    console.log(post, userName);
-    // <div class="share-content-div" onclick="showPost()">
-    //     <div class="content-title-div">
-    //         <iconify-icon icon="healthicons:ui-user-profile" class="user-profile"></iconify-icon>
-    //         <div class="stu-id"></div>
-    //         <iconify-icon icon="simple-line-icons:check" class="content-check"></iconify-icon>
-    //     </div>
-    //     <div class="hr"></div>
-    //     <div class="content-text">
-    //         오늘 5교시 체육인데 체육복을 안갖고 왔어요ㅜㅠㅠㅠ 
-    //         2학년 학생 중 점심시간에 체육복 빌려주실 분 구해요ㅜㅜ 
-    //         6교시에 바로 돌려드릴게요!!!!!!!!!!!!!!
-    //         원하시면 빨래까지 해드릴게요ㅠㅠㅠㅠㅠㅠㅠ 
-    //     </div>
-    //     <div class="comment-cnt-div">
-    //         <img src="/img/comment-cnt.png" class="comment-cnt-img">
-    //         <div class="comment-cnt-num"></div>
-    //     </div>
-    // </div>
     let finalDiv = document.createElement('div');
     finalDiv.className = "share-content-div";
     finalDiv.onclick = () => showPost();
