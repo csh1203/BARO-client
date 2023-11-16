@@ -1,3 +1,29 @@
+function backHome(){
+    window.location.href = '/main.html';
+}
+
+function navChoose(ch, no){
+    document.getElementsByClassName('nav-page')[ch].classList.add('choose-page');
+    document.getElementsByClassName('nav-page')[ch].classList.remove('no-choose-page');
+
+    document.getElementsByClassName('nav-page')[no].classList.add('no-choose-page');
+    document.getElementsByClassName('nav-page')[no].classList.remove('choose-page');
+
+    if(ch){
+        window.location.href = '/shareMyPost.html'
+    }else{
+        window.location.href = '/share.html'
+    }
+}
+
+function plusPost(){
+    window.location.href = '/shareNewPost.html';
+}
+
+function showPost(){
+    window.location.href = '/shareShowPost.html';
+}
+
 let posts;
 axios.get(`${BASE_URL}/share/post`)
 .then(Response => {

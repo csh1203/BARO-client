@@ -100,22 +100,22 @@ function showContent(){
 
 
 
-axios.get(`${BASE_URL}/auth/userinfo`, { withCredentials: true})
-    .then(response => {
-        // console.log('User info:', response.data.user_no);
-        getUserPosts(response.data.user_no);
-    })
-    .catch(error => {
-        console.error('There has been a problem with your axios request:', error);
-    });
+// axios.get(`${BASE_URL}/auth/userinfo`, { withCredentials: true})
+//     .then(response => {
+//         // console.log('User info:', response.data.user_no);
+//         getUserPosts(response.data.user_no);
+//     })
+//     .catch(error => {
+//         console.error('There has been a problem with your axios request:', error);
+//     });
 
-function getUserPosts(user_no){
-    console.log(user_no);
-    axios.get(`${BASE_URL}/share/post/user/${user_no}`)
+// function getUserPosts(user_no){
+    // console.log(user_no);
+    axios.get(`${BASE_URL}/share/post/user/${getUserNo()}`)
     .then(Response => {
         console.log(Response.data);
     })
     .catch(error => {
         console.error('There has been a problem with your axios request:', error);
     });
-}
+// }
