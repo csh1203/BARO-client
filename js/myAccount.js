@@ -24,9 +24,8 @@ axios.get(`${BASE_URL}/auth/userinfo`, { withCredentials: true})
 
 async function logout(){
     try{
-    const reponse = await axios.post(`${BASE_URL}/auth/logout`);
+    await axios.post(`${BASE_URL}/auth/logout`);
         window.location.href = "index.html";
-    console.log(reponse.data);
     }catch(error){
         console.error('There has been a problem with your axios request:', error);
     }
