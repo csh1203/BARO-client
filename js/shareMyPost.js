@@ -109,13 +109,15 @@ function showContent(){
 //         console.error('There has been a problem with your axios request:', error);
 //     });
 
-// function getUserPosts(user_no){
-    // console.log(user_no);
-    axios.get(`${BASE_URL}/share/post/user/${getUserNo()}`)
+getUserPosts()
+async function getUserPosts(){
+    const userno = await getUserNo();
+    console.log(userno)
+    axios.get(`${BASE_URL}/share/post/user/${userno}`)
     .then(Response => {
         console.log(Response.data);
     })
     .catch(error => {
         console.error('There has been a problem with your axios request:', error);
     });
-// }
+}
