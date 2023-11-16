@@ -25,15 +25,10 @@ axios.get(`${BASE_URL}/auth/userinfo`, { withCredentials: true})
 function logout(){
     try{
     axios.get(`${BASE_URL}/auth/logout`)
-<<<<<<< HEAD
-    
-    }catch(error) {
-=======
     .then(response => {
         // console.log(response.data)
     })
     .catch(error => {
->>>>>>> 91443b8de5ed7581ac4984a46112d142c3a77b8e
         console.error('There has been a problem with your axios request:', error);
     }
 }
