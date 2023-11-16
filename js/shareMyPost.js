@@ -111,9 +111,9 @@ axios.get(`${BASE_URL}/auth/userinfo`, { withCredentials: true})
 
 function getUserPosts(user_no){
     console.log(user_no);
-    axios.get(`${BASE_URL}/share/post/${user_no}`)
+    axios.get(`${BASE_URL}/share/post/user/${user_no}`)
     .then(Response => {
-        console.log(Response);
+        console.log(Response.data);
     })
     .catch(error => {
         console.error('There has been a problem with your axios request:', error);
