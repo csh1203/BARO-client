@@ -31,3 +31,11 @@ function plusPost(){
 function showPost(){
     window.location.href = '/shareShowPost.html';
 }
+
+axios.get(`${BASE_URL}/share/post`)
+.then(Response => {
+    console.log(response);
+})
+.catch(error => {
+    console.error('There has been a problem with your axios request:', error);
+});
