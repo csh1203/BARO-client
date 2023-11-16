@@ -13,7 +13,7 @@ async function makePost(){
         title: titleC,
         content: contentC
     }
-    await giaxios.post(`${BASE_URL}/share/post`, req)
+    await axios.post(`${BASE_URL}/share/post`, req)
     .then(result => {
         console.log(result)
     })

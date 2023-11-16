@@ -34,7 +34,7 @@ function showPost(){
 
 axios.get(`${BASE_URL}/share/post`)
 .then(Response => {
-    console.log(response);
+    console.log(Response.data);
 })
 .catch(error => {
     console.error('There has been a problem with your axios request:', error);
