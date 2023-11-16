@@ -13,12 +13,12 @@ async function makePost(){
         title: titleC,
         content: contentC
     }
-    axios.post(`${BASE_URL}/share/post`, req)
+    await giaxios.post(`${BASE_URL}/share/post`, req)
     .then(result => {
         console.log(result)
     })
     .catch(error => {
         console.error('There has been a problem with your axios request:', error);
     });
-    // window.location.href = '/share.html'
+    backShare()
 }
