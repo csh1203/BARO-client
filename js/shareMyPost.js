@@ -1,3 +1,106 @@
+getUserPosts();
+async function getUserPosts(){
+    const userno = await getUserNo();
+    console.log(userno)
+    axios.get(`${BASE_URL}/share/post/user/${userno}`)
+    .then(Response => {
+        getUserInfo(Response.data);
+        // showMyPosts();
+    })
+    .catch(error => {
+        console.error('There has been a problem with your axios request:', error);
+    });
+}
+function getUserInfo(posts){
+    axios.get(`${BASE_URL}/auth/userinfo`, { withCredentials: true})
+    .then(response => {
+        showMyPosts(posts, response.data.name);
+
+    })
+    .catch(error => {
+        console.error('There has been a problem with your axios request:', error);
+    });
+}
+
+function showMyPosts(posts, userName){
+    for(let post of posts){
+        console.log(post);
+        let finalDiv = document.createElement('div');
+        finalDiv.className = "share-content-div";
+
+        let titleDiv = document.createElement('div');
+        titleDiv.className = "content-title-div";
+
+        let profileDiv = document.createElement('div');
+        profileDiv.className = "content-profile";
+
+        let stuId = document.createElement('div');
+        stuId.className = "stu-id";
+        stuId.innerText = userName;
+
+        profileDiv.innerHTML += `<iconify-icon icon="healthicons:ui-user-profile" class="user-profile"></iconify-icon>`;
+        profileDiv.appendChild(stuId);
+        profileDiv.innerHTML += `<iconify-icon icon="simple-line-icons:check" class="content-check"></iconify-icon>`;
+
+        let editDiv = document.createElement('div');
+        editDiv.className = 'edit-content edit-content-btn';
+
+        let editBtn = document.createElement('div');
+        editBtn.className = "edit-success";
+        editBtn.innerText = "완료하기";
+
+        editDiv.appendChild(editBtn);
+        editDiv.innerHTML += `<iconify-icon icon="iconamoon:menu-kebab-vertical-light" class="edit-content"></iconify-icon>`
+
+        titleDiv.appendChild(profileDiv);
+        titleDiv.appendChild(editDiv);
+
+        let hr = document.createElement('div');
+        hr.className = "hr";
+
+        let contentDiv = document.createElement('div');
+        contentDiv.className = "content-text";
+        contentDiv.onclick = () => showContent;
+        contentDiv.innerText = `${post.content}`;
+
+        let commentDiv = document.createElement('div');
+        commentDiv.className = "comment-cnt-div";
+
+        let commentCnt = document.createElement('div');
+        commentCnt.className = "comment-cnt-num";
+
+        commentDiv.innerHTML += `<img src="/img/comment-cnt.png" class="comment-cnt-img">`;
+        commentDiv.appendChild(commentCnt);
+
+        finalDiv.appendChild(titleDiv);
+        finalDiv.appendChild(hr);
+        finalDiv.appendChild(contentDiv);
+        finalDiv.appendChild(commentDiv);
+
+        document.body.appendChild(finalDiv);
+    }
+    functionOpen();
+}
+function functionOpen(){
+    
+    document.addEventListener('click', (e) => {
+        let editDiv = document.getElementsByClassName('edit-post-div')[0];
+        if(e.target.className != "edit-content"){
+            editDiv.style.visibility = "hidden";
+        }
+        
+    });
+    let editArr = [...document.getElementsByClassName("edit-content-btn")];
+    editArr.forEach((e, i) => {
+        e.onclick = () => showEditDiv(e, i);
+    });
+    
+    let successBtnArr = [...document.getElementsByClassName('edit-success')];
+    successBtnArr.forEach((e) => {
+        e.onclick = () => editSuccess(e);
+    })
+}
+let index = -1;
 function navChoose(ch, no){
     document.getElementsByClassName('nav-page')[ch].classList.add('choose-page');
     document.getElementsByClassName('nav-page')[ch].classList.remove('no-choose-page');
@@ -15,25 +118,6 @@ function navChoose(ch, no){
 function backHome(){
     window.location.href = "/main.html";
 }
-
-let index = -1;
-document.addEventListener('click', (e) => {
-    let editDiv = document.getElementsByClassName('edit-post-div')[0];
-    if(e.target.className != "edit-content"){
-        editDiv.style.visibility = "hidden";
-    }
-    
-});
-let editArr = [...document.getElementsByClassName("edit-content-btn")];
-editArr.forEach((e, i) => {
-    e.onclick = () => showEditDiv(e, i);
-});
-
-let successBtnArr = [...document.getElementsByClassName('edit-success')];
-successBtnArr.forEach((e) => {
-    e.onclick = () => editSuccess(e);
-})
-
 function showEditDiv(e, i){
     let editDiv = document.getElementsByClassName('edit-post-div')[0];
     if(index != i){
@@ -71,53 +155,4 @@ function editSuccess(e){
 
 function showContent(){
     window.location.href = "/shareShowPost.html";
-}
-
-{/* <div class="share-content-div">
-        <div class="content-title-div">
-            <div class="content-profile">
-                <iconify-icon icon="healthicons:ui-user-profile" class="user-profile"></iconify-icon>
-                <div class="stu-id">2314_조서현</div>
-                <iconify-icon icon="simple-line-icons:check" class="content-check"></iconify-icon>
-            </div>
-            <div class="edit-content edit-content-btn">
-                <div class="edit-success">완료하기</div>
-                <iconify-icon icon="iconamoon:menu-kebab-vertical-light" class="edit-content"></iconify-icon>
-            </div>
-        </div>
-        <div class="hr"></div>
-        <div class="content-text" onclick="showContent()">
-            오늘 5교시 체육인데 체육복을 안갖고 왔어요ㅜㅠㅠㅠ 
-            2학년 학생 중 점심시간에 체육복 빌려주실 분 구해요ㅜㅜ 
-            6교시에 바로 돌려드릴게요!!!!!!!!!!!!!!
-            원하시면 빨래까지 해드릴게요ㅠㅠㅠㅠㅠㅠㅠ 
-        </div>
-        <div class="comment-cnt-div">
-            <img src="/img/comment-cnt.png" class="comment-cnt-img">
-            <div class="comment-cnt-num"></div>
-        </div>
-    </div> */}
-
-
-
-// axios.get(`${BASE_URL}/auth/userinfo`, { withCredentials: true})
-//     .then(response => {
-//         // console.log('User info:', response.data.user_no);
-//         getUserPosts(response.data.user_no);
-//     })
-//     .catch(error => {
-//         console.error('There has been a problem with your axios request:', error);
-//     });
-
-getUserPosts()
-async function getUserPosts(){
-    const userno = await getUserNo();
-    console.log(userno)
-    axios.get(`${BASE_URL}/share/post/user/${userno}`)
-    .then(Response => {
-        console.log(Response.data);
-    })
-    .catch(error => {
-        console.error('There has been a problem with your axios request:', error);
-    });
 }
