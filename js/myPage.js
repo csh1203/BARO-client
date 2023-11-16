@@ -7,7 +7,7 @@ function backHome(){
     window.location.href = "/main.html"
 }
 
-// 세션에서 로그인한 사용자 정보 불러오는거 하고 싶었는데 안됨 계속 401뜸 (없다는뜻;; 아니 근데 있는데?;;;;)
+// 세션에서 로그인한 사용자 정보 불러오는거 
 axios.get(`${BASE_URL}/auth/userinfo`, { withCredentials: true})
     .then(response => {
         console.log('User info:', response.data);
