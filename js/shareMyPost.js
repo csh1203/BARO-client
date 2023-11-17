@@ -1,10 +1,11 @@
 getUserPosts();
+let AllPosts;
 async function getUserPosts(){
     const userno = await getUserNo();
-    console.log(userno)
     axios.get(`${BASE_URL}/share/post/user/${userno}`)
     .then(Response => {
         getUserInfo(Response.data);
+        AllPosts = Response.data;
     })
     .catch(error => {
         console.error('There has been a problem with your axios request:', error);
@@ -23,7 +24,6 @@ function getUserInfo(posts){
 
 function showMyPosts(posts, userName){
     for(let post of posts){
-        console.log(post);
         let finalDiv = document.createElement('div');
         finalDiv.className = "share-content-div";
 
@@ -142,8 +142,7 @@ function showEditDiv(e, i){
 }
 
 function editMyPost(i){
-    console.log(i);
-    window.location.href = "/shareEditMyPost.html";
+    window.location.href = `/shareEditMyPost.html?id=${i}`;
 }
 
 function deleteMyPost(i){

@@ -31,8 +31,18 @@ sendCommentInput.addEventListener("keyup", function(event){
     }
 });
 
-function sendComment(){
+async function sendComment(){
     console.log(sendCommentInput.value);
+
+    const userno = await getUserNo();
+
+    axios.post(`${BASE_URL}/share/comment/${userno}`)
+    .then(Response => {
+        console.log(Response.data);
+    })
+    .catch(error => {
+        console.error('There has been a problem with your axios request:', error);
+    });
 }
 
 function showCurrectPost(postInfo, userInfo){
