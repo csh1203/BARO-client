@@ -27,30 +27,6 @@ function showMyPosts(posts, userName){
     let container = document.getElementsByClassName('main')[0];
     
     for(let post of posts){
-        // <div class="learn-div">
-        //     <div class="post-Info">
-        //         <div class="post-user-info">
-        //             <iconify-icon icon="healthicons:ui-user-profile" class="user-profile"></iconify-icon>
-        //             <div class="user-nickname">2314_조서현</div>
-        //             <div class="post-date">2023-09-14 12:01</div>
-        //         </div>
-        //         <div class="edit-my-post">
-        //             <div class="join-btn">답변완료하기</div>
-        //             <iconify-icon icon="iconamoon:menu-kebab-vertical-light" class="edit-content"></iconify-icon>
-        //         </div>
-                
-        //     </div>
-        //     <div class="post-content"  onclick="showContent()">
-        //         스택에 같이 나갈 프론트 1명, 백 2명, 디자인 1명을 구해요!
-        //         프론트는 react 사용 가능해야함. 백은 node.js 사용 가능해야함.sdfnksfdsdfnksfdsdfnksfdsdfnksfdsdfnks
-        //         fdsdfnksfdsdfnksfdsdfnksfdsdfnk
-        //         sdkhfsdf sdhfkhsfdkkdfhkdfksdfksdbfdbfk
-        //     </div>
-        //     <div class="comment-cnt-div">
-        //         <img src="/img/comment-cnt.png" class="comment-cnt-img">
-        //         <div class="comment-cnt-num">13</div>
-        //     </div>
-        // </div>
         let finalDiv = document.createElement('div');
         finalDiv.className = "learn-div";
 
@@ -174,7 +150,7 @@ function showEditDiv(e, i){
     deleteButton.onclick = () => deleteMyPost(i);
 }
 function editMyPost(i){
-    window.location.href = "/learnEditMyPost.html"
+    window.location.href = `/learnEditMyPost.html?id=${i}`;
 }
 function deleteMyPost(i){
 
