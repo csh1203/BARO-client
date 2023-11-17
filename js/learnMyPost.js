@@ -1,3 +1,26 @@
+getUserPosts();
+async function getUserPosts(){
+    const userno = await getUserNo();
+    axios.get(`${BASE_URL}/learn/post/user/${userno}`)
+    .then(Response => {
+        getUserInfo(Response.data);
+        console.log(Response.data)
+    })
+    .catch(error => {
+        console.error('There has been a problem with your axios request:', error);
+    });
+}
+function getUserInfo(posts){
+    axios.get(`${BASE_URL}/auth/userinfo`, { withCredentials: true})
+    .then(response => {
+        showMyPosts(posts, response.data.name);
+
+    })
+    .catch(error => {
+        console.error('There has been a problem with your axios request:', error);
+    });
+}
+
 function navChoose(ch, no){
     if(ch){
         window.location.href = '/learn.html'

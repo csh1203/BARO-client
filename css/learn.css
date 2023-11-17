@@ -62,7 +62,7 @@
     -webkit-box-orient: vertical;
     height: 66px;
 }
-.post-Info{
+.post-info{
     display: flex;
     justify-content: space-between;
 }
@@ -79,7 +79,7 @@
     position: relative;
     top: -3px;
     color: #414141;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 400;
 }
 .post-date{

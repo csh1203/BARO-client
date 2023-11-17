@@ -1,32 +1,7 @@
-function backHome(){
-    window.location.href = '/main.html';
-}
-
-function navChoose(ch, no){
-    document.getElementsByClassName('nav-page')[ch].classList.add('choose-page');
-    document.getElementsByClassName('nav-page')[ch].classList.remove('no-choose-page');
-
-    document.getElementsByClassName('nav-page')[no].classList.add('no-choose-page');
-    document.getElementsByClassName('nav-page')[no].classList.remove('choose-page');
-
-    if(ch){
-        window.location.href = '/shareMyPost.html'
-    }else{
-        window.location.href = '/share.html'
-    }
-}
-
-function plusPost(){
-    window.location.href = '/shareNewPost.html';
-}
-
-function showPost(){
-    window.location.href = '/shareShowPost.html';
-}
-
-let posts;
+let AllPost;
 axios.get(`${BASE_URL}/share/post`)
 .then(Response => {
+    AllPost = Response.data;
     getUserName(Response.data);
 })
 .catch(error => {
@@ -35,7 +10,6 @@ axios.get(`${BASE_URL}/share/post`)
 
 function getUserName(posts){
     for(let post of posts){
-        console.log(post.user_no)
         axios.get(`${BASE_URL}/user/${post.user_no}`)
         .then(Response => {
             showPosts(post, Response.data.result.name)
@@ -50,7 +24,6 @@ function getUserName(posts){
 function showPosts(post, userName){
     let finalDiv = document.createElement('div');
     finalDiv.className = "share-content-div";
-    finalDiv.onclick = () => showPost();
 
     let titleDiv = document.createElement('div');
     titleDiv.className = "content-title-div";
@@ -85,4 +58,45 @@ function showPosts(post, userName){
     finalDiv.appendChild(commentDiv);
 
     document.body.appendChild(finalDiv);
+
+    functionOpen();
 }
+
+function functionOpen(){
+    let showPostArr = [...document.getElementsByClassName('share-content-div')];
+    showPostArr.forEach((e, i) => {
+        e.onclick = () => showCurrectPost(e, i);
+    })
+}
+
+function backHome(){
+    window.location.href = '/main.html';
+}
+
+function navChoose(ch, no){
+    document.getElementsByClassName('nav-page')[ch].classList.add('choose-page');
+    document.getElementsByClassName('nav-page')[ch].classList.remove('no-choose-page');
+
+    document.getElementsByClassName('nav-page')[no].classList.add('no-choose-page');
+    document.getElementsByClassName('nav-page')[no].classList.remove('choose-page');
+
+    if(ch){
+        window.location.href = '/shareMyPost.html'
+    }else{
+        window.location.href = '/share.html'
+    }
+}
+
+function plusPost(){
+    window.location.href = '/shareNewPost.html';
+    function showPost(e, i){
+        console.log(e, i);
+        // window.location.href = '/shareShowPost.html';
+    }
+}
+function showCurrectPost(e, i){
+    // console.log(e, i);
+    // console.log(AllPost[i]);
+    window.location.href = `/shareShowPost.html?id=${i}`;
+}
+
