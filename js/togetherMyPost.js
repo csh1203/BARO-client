@@ -1,3 +1,26 @@
+getUserPosts();
+async function getUserPosts(){
+    const userno = await getUserNo();
+    console.log(userno);
+    axios.get(`${BASE_URL}/together/post/user/${userno}`)
+    .then(Response => {
+        getUserInfo(Response.data);
+        console.log(Response.data)
+    })
+    .catch(error => {
+        console.error('There has been a problem with your axios request:', error);
+    });
+}
+function getUserInfo(posts){
+    axios.get(`${BASE_URL}/auth/userinfo`, { withCredentials: true})
+    .then(response => {
+        showMyPosts(posts, response.data.name);
+
+    })
+    .catch(error => {
+        console.error('There has been a problem with your axios request:', error);
+    });
+}
 
 // nav바
 function navChoose(ch, no){
