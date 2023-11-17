@@ -5,7 +5,6 @@ async function getUserPosts(){
     axios.get(`${BASE_URL}/share/post/user/${userno}`)
     .then(Response => {
         getUserInfo(Response.data);
-        // showMyPosts();
     })
     .catch(error => {
         console.error('There has been a problem with your axios request:', error);
