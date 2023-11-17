@@ -146,7 +146,14 @@ function editMyPost(i){
 }
 
 function deleteMyPost(i){
-    console.log(i);
+    let post_no = AllPosts[i].id;
+    axios.delete(`${BASE_URL}/share/post/${post_no}`)
+    .then(Response => {
+        console.log(Response.data);
+    })
+    .catch(error => {
+        console.error('There has been a problem with your axios request:', error);
+    });
 }
 
 function editSuccess(e){
