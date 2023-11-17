@@ -1,10 +1,12 @@
 getUserPosts();
+let AllPosts;
 async function getUserPosts(){
     const userno = await getUserNo();
+    console.log(userno);
     axios.get(`${BASE_URL}/learn/post/user/${userno}`)
     .then(Response => {
+        AllPosts = Response.data;
         getUserInfo(Response.data);
-        console.log(Response.data)
     })
     .catch(error => {
         console.error('There has been a problem with your axios request:', error);
@@ -21,6 +23,110 @@ function getUserInfo(posts){
     });
 }
 
+function showMyPosts(posts, userName){
+    let container = document.getElementsByClassName('main')[0];
+    
+    for(let post of posts){
+        // <div class="learn-div">
+        //     <div class="post-Info">
+        //         <div class="post-user-info">
+        //             <iconify-icon icon="healthicons:ui-user-profile" class="user-profile"></iconify-icon>
+        //             <div class="user-nickname">2314_조서현</div>
+        //             <div class="post-date">2023-09-14 12:01</div>
+        //         </div>
+        //         <div class="edit-my-post">
+        //             <div class="join-btn">답변완료하기</div>
+        //             <iconify-icon icon="iconamoon:menu-kebab-vertical-light" class="edit-content"></iconify-icon>
+        //         </div>
+                
+        //     </div>
+        //     <div class="post-content"  onclick="showContent()">
+        //         스택에 같이 나갈 프론트 1명, 백 2명, 디자인 1명을 구해요!
+        //         프론트는 react 사용 가능해야함. 백은 node.js 사용 가능해야함.sdfnksfdsdfnksfdsdfnksfdsdfnksfdsdfnks
+        //         fdsdfnksfdsdfnksfdsdfnksfdsdfnk
+        //         sdkhfsdf sdhfkhsfdkkdfhkdfksdfksdbfdbfk
+        //     </div>
+        //     <div class="comment-cnt-div">
+        //         <img src="/img/comment-cnt.png" class="comment-cnt-img">
+        //         <div class="comment-cnt-num">13</div>
+        //     </div>
+        // </div>
+        let finalDiv = document.createElement('div');
+        finalDiv.className = "learn-div";
+
+        let infoDiv = document.createElement('div');
+        infoDiv.className = "post-info";
+
+        let userDiv = document.createElement('div');
+        userDiv.className = "post-user-info";
+
+        let name = document.createElement('div');
+        name.className = "user-nickname";
+        name.innerText = userName;
+
+        let date =document.createElement('div');
+        date.className = "post-date";
+        date.innerText = post.date;
+
+        userDiv.innerHTML += `<iconify-icon icon="healthicons:ui-user-profile" class="user-profile"></iconify-icon>`;
+        userDiv.appendChild(name)
+        userDiv.appendChild(date)
+
+        let editDiv = document.createElement('div');
+        editDiv.className = "edit-my-post";
+
+        let joinBtn = document.createElement('div');
+        joinBtn.className = "join-btn";
+        joinBtn.innerText = "답변완료하기";
+
+        editDiv.appendChild(joinBtn)
+        editDiv.innerHTML += `<iconify-icon icon="iconamoon:menu-kebab-vertical-light" class="edit-content"></iconify-icon>`;
+
+        infoDiv.appendChild(userDiv);
+        infoDiv.appendChild(editDiv);
+
+        let contentDiv = document.createElement('div');
+        contentDiv.className = "post-content";
+        contentDiv.innerText = post.content;
+
+        let commentDiv = document.createElement('div');
+        commentDiv.className = "comment-cnt-div";
+
+        let commentCnt = document.createElement('div');
+        commentCnt.className = "comment-cnt-num";
+
+        commentDiv.innerHTML += `<img src="/img/comment-cnt.png" class="comment-cnt-img">`;
+        commentDiv.appendChild(commentCnt);
+
+        finalDiv.appendChild(infoDiv);
+        finalDiv.appendChild(contentDiv);
+        finalDiv.appendChild(commentDiv);
+
+        container.appendChild(finalDiv);
+    }
+    functionOpen();
+}
+
+function functionOpen(){
+    let answerBtnArr = [...document.getElementsByClassName('join-btn')];
+    answerBtnArr.forEach(e => {
+        e.onclick = () => changeAnswer(e);
+    })
+
+    let index = -1;
+    document.addEventListener('click', (e) => {
+        let editDiv = document.getElementsByClassName('edit-post-div')[0];
+        if(e.target.className != "edit-content"){
+            editDiv.style.visibility = "hidden";
+        }
+    
+    });
+    let editArr = [...document.getElementsByClassName("edit-content")];
+    editArr.forEach((e, i) => {
+        e.onclick = () => showEditDiv(e, i);
+    });
+}
+
 function navChoose(ch, no){
     if(ch){
         window.location.href = '/learn.html'
@@ -33,10 +139,7 @@ function backHome(){
     window.location.href = "/main.html";
 }
 
-let answerBtnArr = [...document.getElementsByClassName('join-btn')];
-answerBtnArr.forEach(e => {
-    e.onclick = () => changeAnswer(e);
-})
+
 
 function changeAnswer(e){
     if(e.innerText === "답변완료하기"){
@@ -50,20 +153,6 @@ function changeAnswer(e){
 function showContent(){
     window.location.href = "/learnShowPost.html";
 }
-
-let index = -1;
-document.addEventListener('click', (e) => {
-    let editDiv = document.getElementsByClassName('edit-post-div')[0];
-    if(e.target.className != "edit-content"){
-        editDiv.style.visibility = "hidden";
-    }
-    
-});
-let editArr = [...document.getElementsByClassName("edit-content")];
-editArr.forEach((e, i) => {
-    e.onclick = () => showEditDiv(e, i);
-});
-
 function showEditDiv(e, i){
     let editDiv = document.getElementsByClassName('edit-post-div')[0];
     if(index != i){
