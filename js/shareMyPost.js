@@ -59,7 +59,6 @@ function showMyPosts(posts, userName){
 
         let contentDiv = document.createElement('div');
         contentDiv.className = "content-text";
-        contentDiv.onclick = () => showContent;
         contentDiv.innerText = `${post.content}`;
 
         let commentDiv = document.createElement('div');
@@ -81,6 +80,10 @@ function showMyPosts(posts, userName){
     functionOpen();
 }
 function functionOpen(){
+    let contentArr = [...document.getElementsByClassName('content-text')];
+    contentArr.forEach((e, i) => {
+        e.onclick = () => showContent(i);
+    })
     
     document.addEventListener('click', (e) => {
         let editDiv = document.getElementsByClassName('edit-post-div')[0];
@@ -152,6 +155,6 @@ function editSuccess(e){
     else e.innerHTML = "완료하기"
 }
 
-function showContent(){
-    window.location.href = "/shareShowPost.html";
+function showContent(i){
+    window.location.href = `/shareShowPost.html?id=${i}`;
 }
